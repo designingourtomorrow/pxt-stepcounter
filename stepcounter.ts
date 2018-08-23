@@ -2,7 +2,7 @@
 /**
  * Custom blocks
  */
-//% weight=100 color=#0fbc11 icon="\uf54b"
+//% weight=100 color=#0fbc11 icon="\uf051"
 namespace stepcounter {
     /**
      * TODO: describe your function here
