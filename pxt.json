@@ -1,5 +1,5 @@
 {
-    "name": "graph_demo",
+    "name": "stepcounter",
     "dependencies": {
         "core": "*",
         "radio": "*"
@@ -9,6 +9,6 @@
         "main.blocks",
         "main.ts",
         "README.md",
-        "custom.ts"
+        "stepcounter.ts"
     ]
 }
