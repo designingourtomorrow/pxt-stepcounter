@@ -1,7 +1,7 @@
 {
     "name": "stepcounter",
     "dependencies": {
-        "radio": "*"
+        "core": "*"
     },
     "description": "Simple stepcounter functions for the micro:bit",
     "files": [
