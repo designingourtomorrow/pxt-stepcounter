@@ -1,13 +1,10 @@
 {
     "name": "stepcounter",
     "dependencies": {
-        "core": "*",
         "radio": "*"
     },
     "description": "",
     "files": [
-        "main.blocks",
-        "main.ts",
         "README.md",
         "stepcounter.ts"
     ]
