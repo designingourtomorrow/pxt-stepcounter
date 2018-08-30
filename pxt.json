@@ -1,9 +1,9 @@
 {
     "name": "stepcounter",
     "dependencies": {
-        "radio": "*"
+        "core": "*"
     },
-    "description": "",
+    "description": "Simple stepcounter functions for the micro:bit",
     "files": [
         "README.md",
         "stepcounter.ts"
