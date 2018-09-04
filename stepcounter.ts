@@ -10,20 +10,33 @@
 //% weight=100 color=#0fbc11 icon="\uf051" advanced=false block="DOT Step Test"
 namespace stepcounter {
     //background variables
-    let secretSteps: number = 0                      // our actual step count
-    let sampleArray: number[] = []                   // accelerometer readings
-    let lastStepTime: number = input.runningTime()   // when we last had a step
-    let minStrength: number = 8192                   // accelerometer strength varies so max/min are used
-    let maxStrength: number = 0                      // to calculate a threshold value for different people
-    let minTime: number = 800                        // milliseconds within which two peaks are /not/ two steps
-    let maybeSteps: number[] = [0, 0, 0]             // array of minimal number of steps (three) we should count
+    let secretSteps: number = 0                     // our actual step count
+    let sampleArray: number[] = []                  // accelerometer readings
+    let lastStepTime: number = input.runningTime()  // when we last had a step
+    let minStrength: number = 8192                  // accelerometer strength varies so max/min are used
+    let maxStrength: number = 0                     // to calculate a threshold value for different people
+    let minTime: number = 800                       // milliseconds within which two peaks are /not/ two steps
+    let maybeSteps: number[] = [0, 0, 0]            // array of minimal number of steps (three) we should count
+    let sampleRate: number = 20                     // samples PER SECOND to take from the accelerometer
 
-    /**
-     * helper function for mapping calculation brings any number to 25 for LED plotting
+    
+     /**
+     * helper function for mapping in integers
+     * we use this instead of 'map' because we always want to scale to 25, so we use this to make it easy behind the scenes
      */
-    //% block
+    function integerMap(value: number, inputLow: number, inputHigh: number, outputLow: number, outputHigh: number): number {
+        return (value - inputLow) * (outputHigh - outputLow) / (inputHigh - inputLow) + outputLow
+    }
+
+     /**
+     * helper function for mapping calculation brings any number to 25
+     * this means we can use the LEDs to graph nicely
+     * @params value eg: 216
+     * @params target eg: 10000
+     */
+    //% block "map to 25 using low of $value and high of $target"
     export function mapTo25(value: number, target: number): number {
-        return pins.map(value, 0, target, 0, 25)
+        return integerMap(value, 0, target, 0, 25) - 1
     }
 
      /**
@@ -45,7 +58,7 @@ namespace stepcounter {
     }
     
     /**
-     * randomise steps for testing
+     * randomise steps for testing, up to target
      */
     //% block="random number for testing"
     export function randomiseSteps(): void {
