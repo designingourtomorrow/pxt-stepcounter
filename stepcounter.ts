@@ -1,13 +1,13 @@
 
 /**
- * Use this file to define custom functions and blocks.
- * Read more at https://makecode.microbit.org/blocks/custom
- */
+ * Development Stage blocks for front end testing
+ *
+ * Read more at https://makecode.microbit.org/blocks/custom */
 
 /**
  * Custom blocks
  */
-//% weight=100 color=#0fbc11 icon="\uf051" advanced=false block="DOT Step Test"
+//% weight=100 color=#444A84 icon="\uf051" advanced=false block="DOT Step Test"
 namespace stepcounter {
     //background variables
     let secretSteps: number = 0                     // our actual step count
@@ -18,7 +18,7 @@ namespace stepcounter {
     let minTime: number = 800                       // milliseconds within which two peaks are /not/ two steps
     let maybeSteps: number[] = [0, 0, 0]            // array of minimal number of steps (three) we should count
     let sampleRate: number = 20                     // samples PER SECOND to take from the accelerometer
-
+    let thresholdMultiplier: number = 0.58          // percentage of max at which we start to be sure a thing is a step
     
      /**
      * helper function for mapping in integers
@@ -34,7 +34,7 @@ namespace stepcounter {
      * @params value eg: 216
      * @params target eg: 10000
      */
-    //% block "map to 25 using low of $value and high of $target"
+    // block "map to 25 using low of $value and high of $target"
     export function mapTo25(value: number, target: number): number {
         return integerMap(value, 0, target, 0, 25) - 1
     }
@@ -60,44 +60,47 @@ namespace stepcounter {
     /**
      * randomise steps for testing, up to target
      */
-    //% block="random number for testing"
+    // block="random number for testing"
     export function randomiseSteps(): void {
         secretSteps = Math.random(target)
     }
 
-     /**
-     * set a target and count steps in the background
-     * @param target, eg: 1000
+    /**
+     * count steps using accelerometer and update sample array
      */
-    //% block
-    export function countStepsTo(target: number): void {
-        // Dummy 'counter'
-        secretSteps = Math.random(1024)
+    //% block="turn on step counter"
+    export function turnOnCounterForever(): void {
+        // start sample array
+        blankSampleArray()
+        while (1) {
+            for (let i = 0; i < sampleRate; i++) {
+                basic.pause(1000 / sampleRate)
+                updateSampleArray()
+            }
+
+            findStep()
+        }
     }
 
     /**
-     * graphs LEDs 0-25
-     * @param value describe value here, eg: 5
-     */
-    //% block
-    export function graphOnScreen(target: number): void {
-        let value = secretSteps
+    * graphs 'number' out of 'target' on the LED screen
+    * @param value describe value here, eg: 5, 9, 3
+    */
+    //% block="screenGraph $value out of $target"
+    //% value.min=0
+    export function graphOnScreen(value: number, target: number): void {
         if (value > target) {
             value = target
         }
         let screenValue = mapTo25(value, target)
         if (screenValue == 0) {
             basic.clearScreen()
-            basic.showNumber(0)
         } else {
             basic.clearScreen()
+            basic.pause(500)
             for (let index = 0; index <= screenValue; index++) {
-                led.plot(index / 5, 4 - index % 5)
+                led.plot(0, (index / 5))
             }
-        }
-        value += 1
-        if (value > 25) {
-            value = 0
         }
     }
 }
