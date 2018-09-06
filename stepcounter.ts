@@ -67,19 +67,19 @@ namespace stepcounter {
 
     /**
      * count steps using accelerometer and update sample array
+     * Simple algorithm for testing
      */
     //% block="turn on step counter"
     export function turnOnCounterForever(): void {
         // start sample array
         blankSampleArray()
         while (1) {
-            for (let i = 0; i < sampleRate; i++) {
-                basic.pause(1000 / sampleRate)
-                updateSampleArray()
+            if (getAccelStrength() > stepThreshold && input.runningTime() - lastStepTime > minTime) {
+                lastStepTime = input.runningTime()
+                secretSteps++
             }
-
-            findStep()
         }
+        
     }
 
     /**
