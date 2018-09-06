@@ -78,6 +78,7 @@ namespace stepcounter {
                 lastStepTime = input.runningTime()
                 secretSteps++
             }
+            basic.pause(10)
         }
         
     }
