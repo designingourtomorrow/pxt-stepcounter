@@ -24,7 +24,7 @@ namespace stepcounter {
      * helper function for mapping in integers
      * we use this instead of 'map' because we always want to scale to 25, so we use this to make it easy behind the scenes
      */
-    function integerMap(value: number, inputLow: number, inputHigh: number, outputLow: number, outputHigh: number): number {
+    export function integerMap(value: number, inputLow: number, inputHigh: number, outputLow: number, outputHigh: number): number {
         return (value - inputLow) * (outputHigh - outputLow) / (inputHigh - inputLow) + outputLow
     }
 
@@ -43,7 +43,7 @@ namespace stepcounter {
      * returns square root of added squares of 3 directions
      * Accel Strength is pythagorean and therefore mostly rotation-agnostic.
      */
-    function getAccelStrength(): number {
+    export function getAccelStrength(): number {
         let X: number = input.acceleration(Dimension.X)
         let Y: number = input.acceleration(Dimension.Y)
         let Z: number = input.acceleration(Dimension.Z)
@@ -53,7 +53,7 @@ namespace stepcounter {
     /** 
     * used primarily once we move the sample data to where we will examine it to see if there is a 'step' in there
     */
-    function blankSampleArray(): void {
+    export function blankSampleArray(): void {
         sampleArray = []
     }
     
