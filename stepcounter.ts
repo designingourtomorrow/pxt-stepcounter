@@ -31,8 +31,8 @@ namespace stepcounter {
      /**
      * helper function for mapping calculation brings any number to 25
      * this means we can use the LEDs to graph nicely
-     * @params value eg: 216
-     * @params target eg: 10000
+     * @param value describe value here eg: 216
+     * @param target describe target here eg: 10000
      */
     // block "map to 25 using low of $value and high of $target"
     export function mapTo25(value: number, target: number): number {
