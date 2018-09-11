@@ -104,4 +104,11 @@ namespace stepcounter {
             }
         }
     }
+    /**
+     * get the number of steps walked so far
+     */
+    //% block="step count"
+    export function getSecretSteps(): number {
+        return secretSteps
+    }
 }
