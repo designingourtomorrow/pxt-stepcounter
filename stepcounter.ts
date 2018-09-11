@@ -19,6 +19,7 @@ namespace stepcounter {
     let maybeSteps: number[] = [0, 0, 0]            // array of minimal number of steps (three) we should count
     let sampleRate: number = 20                     // samples PER SECOND to take from the accelerometer
     let thresholdMultiplier: number = 0.58          // percentage of max at which we start to be sure a thing is a step
+    let stepThreshold: number = 1500                // initial threshold of strength
     
      /**
      * helper function for mapping in integers
@@ -73,7 +74,6 @@ namespace stepcounter {
     export function turnOnCounterForever(): void {
         // start sample array
         blankSampleArray()
-        let stepThreshold: number = thresholdMultiplier
         while (1) {
             if (getAccelStrength() > stepThreshold && input.runningTime() - lastStepTime > minTime) {
                 lastStepTime = input.runningTime()
