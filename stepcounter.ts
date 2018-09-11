@@ -62,7 +62,7 @@ namespace stepcounter {
      */
     // block="random number for testing"
     export function randomiseSteps(): void {
-        secretSteps = Math.random(target)
+        secretSteps = Math.randomRange(0, 250)
     }
 
     /**
@@ -73,6 +73,7 @@ namespace stepcounter {
     export function turnOnCounterForever(): void {
         // start sample array
         blankSampleArray()
+        let stepThreshold: number = thresholdMultiplier
         while (1) {
             if (getAccelStrength() > stepThreshold && input.runningTime() - lastStepTime > minTime) {
                 lastStepTime = input.runningTime()
