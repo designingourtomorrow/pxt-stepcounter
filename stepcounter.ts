@@ -86,6 +86,7 @@ namespace stepcounter {
     /**
     * graphs 'number' out of 'target' on the LED screen
     * @param value describe value here, eg: 5, 9, 3
+    * @param target describe target here, eg, 100
     */
     //% block="screenGraph $value out of $target"
     //% value.min=0
