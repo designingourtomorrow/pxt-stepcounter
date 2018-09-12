@@ -1,13 +1,13 @@
 
 /**
- * Development Stage blocks for front end testing
+ * Stepcounter Blocks, production folder
  *
  * Read more at https://makecode.microbit.org/blocks/custom */
 
 /**
  * Custom blocks
  */
-//% weight=100 color=#444A84 icon="\uf051" advanced=false block="DOT Step Test"
+//% weight=100 color=#444A84 icon="\uf051" advanced=false block="DOT Step Counter"
 namespace stepcounter {
     //background variables
     let secretSteps: number = 0                     // our actual step count
