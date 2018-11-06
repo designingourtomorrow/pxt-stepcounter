@@ -7,7 +7,7 @@
 /**
 * Custom blocks
 */
-//% weight=100 color=#444A84 icon="\uf051" advanced=false block="DOT Step TEST"
+//% weight=100 color=#444A84 icon="\uf051" advanced=false block="DOT Steps"
 namespace stepcounter {
     //background variables
     let sampleRate: number = 20                     // samples PER SECOND to take from the accelerometer
