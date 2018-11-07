@@ -272,6 +272,7 @@ namespace stepcounter {
             for (let index = 0; index <= screenValue; index++) {
                 led.plot(index % 5, 4 - (Math.floor(index / 5)))
             }
+        }
     }
   
 }
